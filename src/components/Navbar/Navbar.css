@@ -15,10 +15,10 @@
 
 .navbar-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Logo a la izq, grupo-derecho a la der, menú-desktop en medio */
   align-items: center;
-  height: 80px;
-  width: 100%; /* Para que el container ocupe el 90% definido en index.css */
+  height: 100%;
+  width: 100%; /* El .container global en App.js le da el ancho real y centrado */
 }
 
 .navbar-logo {
@@ -29,18 +29,23 @@
   font-family: var(--font-secondary);
   display: flex;
   align-items: center;
+  flex-shrink: 0; /* Para que no se encoja si el espacio es limitado */
 }
 
 .navbar-logo img {
-  height: 50px; /* Ajusta según el tamaño de tu logo */
-  margin-right: 10px;
+  height: 50px;
+  margin-right: 10px; /* Opcional, si el logo tiene texto al lado */
 }
 
+/* Menú de navegación principal (Desktop) */
 .nav-menu {
-  display: flex;
+  display: flex; /* Visible en desktop */
   align-items: center;
   list-style: none;
   text-align: center;
+  margin: 0 auto; /* Ayuda a centrarlo si es el único elemento flexible que crece */
+  flex-grow: 1; /* Permite que ocupe el espacio disponible y centre los items */
+  justify-content: center; /* Centra los nav-items dentro del nav-menu */
 }
 
 .nav-item {
@@ -66,16 +71,33 @@
   border-bottom: 3px solid var(--color-accent);
 }
 
-.nav-links.active-link { /* Clase de react-scroll para el link activo */
+.nav-links.active-link {
   color: var(--color-primary);
   border-bottom: 3px solid var(--color-primary);
   font-weight: 500;
 }
 
-.nav-utilities {
+/* Contenedor para el grupo de la derecha (icono hamburguesa + utilidades) */
+.navbar-right-group {
   display: flex;
   align-items: center;
-  gap: 10px; /* Espacio entre botones de utilidad */
+  flex-shrink: 0; /* Para que no se encoja */
+}
+
+/* Icono de Hamburguesa */
+.menu-icon {
+  display: none; /* Oculto en desktop por defecto */
+  color: var(--color-primary);
+  font-size: 1.8rem;
+  cursor: pointer;
+  /* El orden dentro de navbar-right-group y los márgenes se definen en la vista móvil */
+}
+
+/* Utilidades del Navbar */
+.nav-utilities {
+  display: flex; /* Ya es flex por navbar-right-group, pero redundar no daña para sus hijos */
+  align-items: center;
+  gap: 10px;
 }
 
 .nav-util-button {
@@ -93,7 +115,7 @@
 
 .nav-util-button:hover {
   background-color: var(--color-accent);
-  color: var(--color-background); /* O un color de texto que contraste con el acento */
+  color: var(--color-background);
   border-color: var(--color-accent);
   transform: translateY(-1px);
 }
@@ -107,86 +129,96 @@
   border-color: var(--color-accent);
 }
 
-
-.nav-util-button.home-button {
-  font-weight: 500;
-}
-
-.menu-icon {
-  display: none; /* Oculto en desktop */
-  color: var(--color-primary);
-  font-size: 1.8rem;
-  cursor: pointer;
-}
-
+/* --- ESTILOS PARA MÓVIL --- */
 @media screen and (max-width: 960px) {
   .navbar-container {
-    /* Ajusta el container para el menú hamburguesa */
+    /* .navbar-logo a la izquierda, .navbar-right-group a la derecha */
+    /* justify-content: space-between; se mantiene */
   }
 
+  /* Ocultar el menú de navegación de escritorio (ul.nav-menu) */
   .nav-menu {
-    display: flex;
+    display: none; /* Oculto en la barra, se mostrará como desplegable */
+    /* Estilos para cuando es el menú desplegable activo */
     flex-direction: column;
     width: 100%;
-    height: calc(100vh - 80px); /* Altura completa menos el navbar */
+    height: calc(100vh - 80px);
     position: absolute;
     top: 80px; /* Debajo del navbar */
-    left: -100%; /* Oculto fuera de la pantalla */
+    left: -100%;
     opacity: 1;
-    transition: all 0.4s ease;
-    background-color: var(--color-surface); /* Mismo fondo que el navbar */
+    transition: all 0.4s ease-in-out;
+    background-color: var(--color-surface);
     padding-top: 2rem;
+    z-index: 990; /* Debajo del navbar sticky pero sobre el contenido */
   }
 
   .nav-menu.active {
-    left: 0;
-    opacity: 1;
-    z-index: 1;
+    left: 0; /* Se desliza desde la izquierda */
+    display: flex; /* Hacerlo visible y flex */
   }
 
   .nav-item {
     width: 100%;
-    height: auto; /* Altura automática para los items en vertical */
+    height: auto;
   }
 
-  .nav-links {
+  .nav-links { /* Estilos para los links dentro del menú desplegable */
     text-align: center;
     padding: 1.5rem;
     width: 100%;
-    display: table;
-    border-bottom: none; /* Quitar borde inferior en móvil */
+    display: block; /* Para que ocupen todo el ancho */
+    border-bottom: none;
   }
-
   .nav-links:hover {
     color: var(--color-accent);
-    border-bottom: none; /* Quitar borde inferior en móvil */
-    background-color: rgba(0,0,0,0.05); /* Un ligero feedback */
+    border-bottom: none;
+    background-color: rgba(0,0,0,0.05);
   }
   [data-theme="dark"] .nav-links:hover {
     background-color: rgba(255,255,255,0.05);
   }
-
   .nav-links.active-link {
     border-bottom: none;
     color: var(--color-primary);
     font-weight: bold;
   }
   
-  .navbar-logo {
-    /* Asegurar que el logo no se desplace demasiado */
+  /* Mostrar el icono de hamburguesa y ajustar el grupo derecho */
+  .navbar-right-group {
+    /* display: flex; align-items: center; ya está definido arriba */
   }
 
   .menu-icon {
+    position: relative; 
+    top: 5px;
     display: block; /* Mostrar en móvil */
+    margin-right: 10px; /* Espacio entre el icono hamburguesa y el primer botón de utilidad */
+    order: -1; /* OPCIONAL: Si quieres que el icono hamburguesa sea el PRIMERO dentro del navbar-right-group */
   }
 
   .nav-utilities {
-    /* Podrías querer mover las utilidades al menú hamburguesa también,
-       o dejarlas visibles si caben. Aquí las dejamos visibles. */
-    /* Si quieres ocultar el texto del home button en móvil y solo dejar el icono: */
-    /* .nav-util-button.home-button span { display: none; } */
+    /* Los estilos de .nav-utilities y .nav-util-button se aplican */
   }
-  .nav-util-button.home-button {
-    display: none; /* Ocultar el botón "Inicio" de la derecha en móvil, ya que el logo sirve para eso */
+
+  .nav-util-button.home-button { /* Botón "Inicio" textual de las utilidades */
+     display: none; /* Ocultar en móvil */
   }
+}
+
+/* Para pantallas aún más pequeñas, si es necesario ajustar más */
+@media screen and (max-width: 480px) {
+  .navbar-logo img {
+    height: 40px;
+  }
+  .menu-icon {
+    font-size: 1.6rem;
+    margin-right: 8px;
+  }
+  /* Podríamos querer ocultar algunos .nav-util-button si no caben,
+     por ejemplo, si el botón de idioma tiene texto y es muy largo.
+     Si son solo iconos, suelen caber bien. */
+  /* Ejemplo:
+  .nav-util-button[title*="Idioma"] span { display: none; } // Ocultar texto del botón de idioma
+  */
 }
