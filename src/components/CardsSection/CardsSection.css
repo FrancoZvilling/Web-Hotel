@@ -1,0 +1,120 @@
+/* components/CardsSection/CardsSection.css */
+.cards-section {
+  background-color: var(--color-background);
+  padding: 60px 0;
+}
+
+.cards-section h2 { /* Si decides poner un título a la sección */
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: var(--color-primary);
+}
+
+.cards-container {
+  display: flex;
+  justify-content: space-around; /* O space-between */
+  align-items: stretch; /* Para que todas las cartas tengan la misma altura si su contenido varía */
+  flex-wrap: wrap; /* Para que se ajusten en pantallas pequeñas */
+  gap: 30px; /* Espacio entre cartas */
+}
+
+.card {
+  flex-basis: calc(33.333% - 20px); /* 3 cartas, con el gap restado */
+  min-width: 300px; /* Ancho mínimo para responsividad */
+  height: 450px; /* Altura fija para las cartas */
+  background-size: cover;
+  background-position: center;
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+  color: white;
+  box-shadow: var(--shadow);
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: var(--shadow-hover);
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.7) 100%);
+  transition: background 0.5s ease;
+}
+
+.card:hover .card-overlay {
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
+}
+
+
+.card-content {
+  position: relative; /* Para que esté sobre el overlay */
+  z-index: 2;
+  padding: 25px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* Alineación del título según la clase */
+}
+
+.card-content.title-top {
+  justify-content: flex-start; /* Título arriba */
+}
+
+.card-content.title-bottom {
+  justify-content: flex-end; /* Título abajo */
+}
+
+.card-content h3 {
+  font-size: 2rem;
+  font-family: var(--font-secondary);
+  color: #fff; /* Título siempre blanco */
+  margin: 0;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
+  /* Efecto sutil al pasar el mouse */
+  transition: transform 0.3s ease-out;
+}
+
+.card:hover .card-content h3 {
+   /* Podríamos hacer que el título se mueva un poco, o cambie de tamaño */
+   /* transform: translateY(-5px); */
+}
+
+/* Si añades párrafos de texto dentro de la card */
+.card-content p {
+  font-size: 0.9rem;
+  opacity: 0; /* Oculto por defecto */
+  transform: translateY(20px);
+  transition: opacity 0.4s 0.1s ease, transform 0.4s 0.1s ease; /* Delay en la aparición */
+  margin-top: 10px;
+  max-width: 90%;
+}
+
+.card:hover .card-content p {
+  opacity: 0.9;
+  transform: translateY(0);
+}
+
+@media screen and (max-width: 992px) {
+  .card {
+    flex-basis: calc(50% - 15px); /* 2 cartas por fila */
+    height: 400px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .card {
+    flex-basis: 100%; /* 1 carta por fila */
+    height: 350px;
+  }
+  .card-content h3 {
+    font-size: 1.8rem;
+  }
+}

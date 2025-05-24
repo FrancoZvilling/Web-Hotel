@@ -1,0 +1,82 @@
+/* components/ServicesBar/ServicesBar.css */
+.services-bar {
+  background-color: var(--color-secondary); /* Color distintivo */
+  color: var(--color-background); /* Texto claro sobre fondo oscuro */
+  padding: 25px 0; /* Sección fina */
+}
+
+[data-theme="dark"] .services-bar {
+  background-color: var(--color-surface); /* Usar el surface del tema oscuro */
+  color: var(--color-text-primary);
+}
+
+.services-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap; /* Para que se ajusten en pantallas pequeñas */
+  gap: 20px;
+}
+
+.service-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 100px; /* Para que no se peguen mucho */
+  transition: transform 0.3s ease;
+}
+
+.service-item:hover {
+  transform: translateY(-5px);
+}
+
+.service-icon {
+  font-size: 2.5rem; /* Tamaño de los iconos */
+  margin-bottom: 8px;
+  color: var(--color-accent); /* Iconos con el color de acento del tema actual */
+}
+
+/* En modo oscuro, los iconos ya usan --color-accent que se ajusta,
+   pero si quieres un color específico para los iconos en el services bar del modo oscuro: */
+[data-theme="dark"] .service-icon {
+   color: var(--color-accent); /* O un color específico, ej: #FFD700 */
+}
+/* Si el color de fondo del services-bar en modo oscuro es claro,
+   entonces el texto debe ser oscuro */
+[data-theme="dark"] .services-bar .service-text {
+    color: var(--color-text-primary); /* Usar el texto primario del tema oscuro */
+}
+/* Si el color de fondo del services-bar en modo claro es oscuro,
+   entonces el texto debe ser claro */
+[data-theme="light"] .services-bar .service-text {
+    color: var(--color-background); /* Usar el color de fondo como texto (claro) */
+}
+
+
+.service-text {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 768px) {
+  .services-container {
+    justify-content: center; /* Centrar en móvil si no caben todos */
+    gap: 30px 15px; /* Más espacio vertical, menos horizontal */
+  }
+  .service-item {
+    flex-basis: calc(33.33% - 10px); /* 3 por fila */
+  }
+  .service-icon {
+    font-size: 2rem;
+  }
+  .service-text {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .service-item {
+    flex-basis: calc(50% - 10px); /* 2 por fila */
+  }
+}

@@ -1,0 +1,192 @@
+/* components/Navbar/Navbar.css */
+.navbar {
+  background-color: var(--color-surface);
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  box-shadow: var(--shadow);
+  transition: background-color 0.3s ease;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  width: 100%; /* Para que el container ocupe el 90% definido en index.css */
+}
+
+.navbar-logo {
+  color: var(--color-primary);
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1.8rem;
+  font-family: var(--font-secondary);
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo img {
+  height: 50px; /* Ajusta según el tamaño de tu logo */
+  margin-right: 10px;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  text-align: center;
+}
+
+.nav-item {
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-links {
+  color: var(--color-text-secondary);
+  padding: 0 1rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out, border-bottom 0.2s ease-in-out;
+  border-bottom: 3px solid transparent;
+}
+
+.nav-links:hover {
+  color: var(--color-accent);
+  border-bottom: 3px solid var(--color-accent);
+}
+
+.nav-links.active-link { /* Clase de react-scroll para el link activo */
+  color: var(--color-primary);
+  border-bottom: 3px solid var(--color-primary);
+  font-weight: 500;
+}
+
+.nav-utilities {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espacio entre botones de utilidad */
+}
+
+.nav-util-button {
+  background-color: transparent;
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease;
+}
+
+.nav-util-button:hover {
+  background-color: var(--color-accent);
+  color: var(--color-background); /* O un color de texto que contraste con el acento */
+  border-color: var(--color-accent);
+  transform: translateY(-1px);
+}
+[data-theme="dark"] .nav-util-button {
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+}
+[data-theme="dark"] .nav-util-button:hover {
+  background-color: var(--color-accent);
+  color: var(--color-background);
+  border-color: var(--color-accent);
+}
+
+
+.nav-util-button.home-button {
+  font-weight: 500;
+}
+
+.menu-icon {
+  display: none; /* Oculto en desktop */
+  color: var(--color-primary);
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 960px) {
+  .navbar-container {
+    /* Ajusta el container para el menú hamburguesa */
+  }
+
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100vh - 80px); /* Altura completa menos el navbar */
+    position: absolute;
+    top: 80px; /* Debajo del navbar */
+    left: -100%; /* Oculto fuera de la pantalla */
+    opacity: 1;
+    transition: all 0.4s ease;
+    background-color: var(--color-surface); /* Mismo fondo que el navbar */
+    padding-top: 2rem;
+  }
+
+  .nav-menu.active {
+    left: 0;
+    opacity: 1;
+    z-index: 1;
+  }
+
+  .nav-item {
+    width: 100%;
+    height: auto; /* Altura automática para los items en vertical */
+  }
+
+  .nav-links {
+    text-align: center;
+    padding: 1.5rem;
+    width: 100%;
+    display: table;
+    border-bottom: none; /* Quitar borde inferior en móvil */
+  }
+
+  .nav-links:hover {
+    color: var(--color-accent);
+    border-bottom: none; /* Quitar borde inferior en móvil */
+    background-color: rgba(0,0,0,0.05); /* Un ligero feedback */
+  }
+  [data-theme="dark"] .nav-links:hover {
+    background-color: rgba(255,255,255,0.05);
+  }
+
+  .nav-links.active-link {
+    border-bottom: none;
+    color: var(--color-primary);
+    font-weight: bold;
+  }
+  
+  .navbar-logo {
+    /* Asegurar que el logo no se desplace demasiado */
+  }
+
+  .menu-icon {
+    display: block; /* Mostrar en móvil */
+  }
+
+  .nav-utilities {
+    /* Podrías querer mover las utilidades al menú hamburguesa también,
+       o dejarlas visibles si caben. Aquí las dejamos visibles. */
+    /* Si quieres ocultar el texto del home button en móvil y solo dejar el icono: */
+    /* .nav-util-button.home-button span { display: none; } */
+  }
+  .nav-util-button.home-button {
+    display: none; /* Ocultar el botón "Inicio" de la derecha en móvil, ya que el logo sirve para eso */
+  }
+}

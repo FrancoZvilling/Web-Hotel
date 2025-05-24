@@ -1,0 +1,130 @@
+/* components/ContactSection/ContactSection.css */
+.contact-section {
+  background-color: var(--color-surface);
+  padding: 60px 0;
+}
+
+.contact-main-grid, .contact-map-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 50px; /* Espacio entre la info de contacto y el mapa */
+}
+
+.contact-image-container img {
+  width: 100%;
+  height: auto;
+  max-height: 400px; /* Limitar altura de la imagen */
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
+.contact-info-container {
+  padding-left: 20px; /* Un poco de espacio si la imagen está a la izquierda */
+}
+
+.contact-info-container h2 {
+  font-size: 2.5rem;
+  color: var(--color-primary);
+  margin-bottom: 20px;
+}
+
+.contact-detail {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 15px;
+  line-height: 1.8;
+}
+
+.whatsapp-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #25D366; /* Color de WhatsApp */
+  color: white;
+  padding: 12px 25px;
+  border-radius: 25px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: var(--shadow);
+}
+
+.whatsapp-button:hover {
+  background-color: #1DAE52; /* Un tono más oscuro de WhatsApp al pasar el mouse */
+  transform: translateY(-2px);
+  color: white; /* Asegurar que el color del texto no cambie por la :hover de <a> global */
+}
+
+.whatsapp-button svg {
+  font-size: 1.3em;
+}
+
+
+.map-info {
+  text-align: left; /* O center si prefieres */
+  padding-right: 20px;
+}
+
+.map-info .location-icon {
+  font-size: 3rem;
+  color: var(--color-accent);
+  margin-bottom: 15px;
+}
+
+.map-info h3 {
+  font-size: 1.8rem;
+  color: var(--color-primary);
+  margin-bottom: 10px;
+}
+
+.map-info p {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+}
+
+.map-container {
+  height: 400px; /* Altura del mapa */
+  border-radius: 10px;
+  overflow: hidden; /* Para que el iframe respete el border-radius */
+  box-shadow: var(--shadow);
+}
+
+.map-container iframe {
+  border: 0; /* Quitar borde por defecto del iframe */
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .contact-main-grid, .contact-map-grid {
+    grid-template-columns: 1fr; /* Apilar en pantallas pequeñas */
+    gap: 30px;
+    text-align: center; /* Centrar contenido cuando está apilado */
+  }
+
+  .contact-image-container {
+    order: 1; /* Imagen primero */
+  }
+  .contact-info-container {
+    order: 2; /* Info después */
+    padding-left: 0;
+  }
+
+  /* Para el mapa, podríamos querer el texto arriba y el mapa abajo */
+  .map-info {
+    order: 1;
+    padding-right: 0;
+    text-align: center;
+  }
+  .map-container {
+    order: 2;
+    height: 300px; /* Reducir altura del mapa en móvil */
+  }
+
+  .contact-info-container h2 {
+    font-size: 2rem;
+  }
+}

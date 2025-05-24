@@ -1,0 +1,203 @@
+/* components/Footer/Footer.css */
+.footer {
+  background-color: var(--color-primary);
+  color: var(--color-background);
+  padding-top: 50px; /* Espacio superior general para el contenido del footer */
+  /* El padding inferior lo maneja el .footer-bottom o el wrapper */
+}
+
+[data-theme="dark"] .footer {
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+}
+
+/*
+  Recordatorio de la clase .container global (de index.css):
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto; // Esto es lo que centra el bloque .container
+    padding: 20px 0; // Padding vertical, sin padding horizontal
+  }
+  Asegúrate de que esta definición sea correcta y no esté siendo anulada.
+  El div con clase "container" DENTRO del footer usará estas propiedades.
+*/
+
+.footer .container {
+  /* Podemos anular o añadir padding específico para el container DENTRO del footer si es necesario.
+     Por ahora, confiamos en el padding global de .container y el padding-top de .footer.
+     Si el container global tiene padding vertical, considera si el padding-top del .footer es adicional o reemplazo.
+     Si .container tiene `padding: 20px 0;`, entonces .footer con `padding-top: 50px` hará que el contenido
+     del footer-content-wrapper comience 50px desde el tope del footer, y el .container en sí mismo
+     tendrá su propio padding vertical de 20px arriba y abajo de sus hijos directos.
+     Para evitar doble padding superior, podrías quitar el padding-top de .footer
+     y dejar que el .container global maneje todo el espaciado vertical interno.
+     O hacer:
+  */
+   padding-top: 0; /* Anula el padding-top del .container global si .footer ya tiene padding-top */
+   padding-bottom: 0; /* Anula el padding-bottom del .container global */
+}
+
+
+.footer-content-wrapper {
+  display: flex;
+  justify-content: center; /* CRUCIAL: Centra los ítems flex (las columnas) */
+  align-items: flex-start; /* Alinea las columnas en la parte superior */
+  flex-wrap: wrap;
+  gap: 35px; /* Espacio entre las columnas */
+  padding-bottom: 50px; /* Espacio antes de la sección .footer-bottom */
+  /* Este div está DENTRO de .container, por lo que su "mundo" es el ancho de .container.
+     justify-content: center distribuirá las columnas dentro de este espacio. */
+     padding-left: 200px;
+}
+
+.footer-column {
+  width: 280px; /* Un ancho fijo para cada columna */
+  /* Alternativamente, podrías usar:
+     flex: 0 0 280px; (no crecer, no encoger, base de 280px)
+     o
+     max-width: 280px;
+     flex-basis: 30%; (si quieres que sea más relativo al padre)
+  */
+  text-align: left; /* Alineación del texto dentro de cada columna */
+}
+
+.footer-column h4 {
+  font-size: 1.3rem;
+  font-family: var(--font-secondary);
+  color: var(--color-accent);
+  margin-bottom: 15px; /* Espacio sobre el texto y bajo la línea */
+  padding-bottom: 10px; /* Espacio bajo el texto para la línea */
+  position: relative;
+  border-bottom: 2px solid var(--color-accent); /* Línea directamente en el h4 */
+  display: inline-block; /* Para que el border-bottom solo ocupe el ancho del texto */
+  width: auto; /* Para que el display: inline-block funcione como se espera */
+}
+
+/* Quitar el ::after si la línea está directamente en el h4 */
+/*
+.footer-column h4::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  height: 2px;
+  background-color: var(--color-accent);
+}
+*/
+
+[data-theme="dark"] .footer-column h4 {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+/*
+[data-theme="dark"] .footer-column h4::after {
+  background-color: var(--color-accent);
+}
+*/
+
+.footer-column p,
+.footer-links ul li a {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--color-background);
+  text-decoration: none; /* Para los 'a' */
+  display: block; /* Para que los 'a' ocupen su línea */
+  margin-bottom: 8px; /* Espacio entre items de lista o párrafos */
+}
+
+.footer-links ul li:last-child a,
+.footer-column p:last-child {
+  margin-bottom: 0;
+}
+
+.footer-links ul li a:hover {
+  color: var(--color-accent);
+  padding-left: 5px;
+}
+
+[data-theme="dark"] .footer-column p,
+[data-theme="dark"] .footer-links ul li a {
+  color: var(--color-text-secondary);
+}
+[data-theme="dark"] .footer-links ul li a:hover {
+  color: var(--color-accent);
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px; /* Espacio si viene después de un párrafo */
+}
+
+.social-icons a {
+  color: var(--color-background);
+  font-size: 1.5rem;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+[data-theme="dark"] .social-icons a {
+  color: var(--color-text-secondary);
+}
+.social-icons a:hover {
+  color: var(--color-accent);
+  transform: scale(1.1);
+}
+
+/* --- FOOTER BOTTOM --- */
+.footer-bottom {
+  text-align: center;
+  padding: 20px 15px; /* Añadido padding horizontal para texto largo en móvil */
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.85rem;
+}
+[data-theme="dark"] .footer-bottom {
+  border-top: 1px solid var(--color-border);
+}
+.footer-bottom p {
+  margin: 0;
+  color: var(--color-background);
+}
+[data-theme="dark"] .footer-bottom p {
+  color: var(--color-text-secondary);
+}
+
+/* --- RESPONSIVE --- */
+@media screen and (max-width: 991px) { /* Breakpoint cuando 3 columnas de 280px + gap ya no caben bien */
+  .footer-content-wrapper {
+    gap: 25px; /* Reducir gap si es necesario */
+  }
+  .footer-column {
+     /* Podríamos cambiar a flex-basis: 45% para 2 columnas y luego 100% */
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .footer {
+    padding-top: 30px;
+  }
+  .footer-content-wrapper {
+    flex-direction: column;
+    align-items: center; /* Centra las columnas apiladas */
+    gap: 30px; /* Espacio vertical entre columnas apiladas */
+    padding-bottom: 30px;
+  }
+  .footer-column {
+    width: 85%; /* Ancho de las columnas apiladas */
+    max-width: 400px; /* Límite para que no sean demasiado anchas */
+    text-align: center; /* Centra el texto DENTRO de cada columna */
+  }
+  .footer-column h4 {
+    display: inline-block; /* Para que el centrado del texto funcione bien con el border */
+    /* La línea con border-bottom ya está en el h4, se centrará con el texto */
+  }
+  .social-icons {
+    justify-content: center; /* Centra los iconos sociales */
+  }
+}

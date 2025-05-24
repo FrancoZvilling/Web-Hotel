@@ -1,0 +1,72 @@
+/* components/HeroSection/HeroSection.css */
+.hero-section {
+  height: 100vh; /* O la altura que prefieras, ej: 70vh, 80vh */
+  width: 100%;
+  position: relative;
+  overflow: hidden; /* Para que las slides no se desborden */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  opacity: 0;
+  transition: opacity 1s ease-in-out; /* Transición suave entre imágenes */
+  z-index: 1;
+}
+
+.hero-slide.active {
+  opacity: 1;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Oscurece un poco la imagen para que el texto resalte */
+  z-index: 2;
+}
+
+[data-theme="dark"] .hero-overlay {
+  background-color: rgba(0, 0, 0, 0.6); /* Un poco más oscuro en modo oscuro si se desea */
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  color: #fff; /* Texto blanco sobre la imagen/overlay */
+}
+
+.hero-content h1 {
+  font-size: 3.5rem;
+  margin-bottom: 0.5em;
+  color: #fff; /* Asegurar que el H1 sea blanco aquí */
+  font-weight: 700;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+}
+
+.hero-content p {
+  font-size: 1.5rem;
+  margin-bottom: 1.5em;
+  font-weight: 300;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.6);
+}
+
+@media screen and (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+  .hero-content p {
+    font-size: 1.2rem;
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "navbar": {
+    "home": "Inicio",
+    "photos": "Fotografías",
+    "rooms": "Habitaciones",
+    "activities": "Actividades",
+    "gastronomy": "Gastronomía",
+    "contact": "Contacto",
+    "language": "Idioma",
+    "theme": "Tema"
+  },
+  "hero": {
+    "title": "Bienvenido a Nuestro Hotel",
+    "subtitle": "Tu escapada perfecta te espera."
+  },
+  "cards": {
+    "roomsTitle": "Habitaciones",
+    "activitiesTitle": "Actividades",
+    "gastronomyTitle": "Gastronomía"
+  },
+  "services": {
+    "spa": "Spa",
+    "pool": "Pileta",
+    "wifi": "WiFi",
+    "tv": "Televisión",
+    "ac": "Ambiente Climatizado",
+    "restaurant": "Restaurante"
+  },
+  "contact": {
+    "title": "Escríbenos",
+    "phone": "Teléfono Fijo: (Próximamente)",
+    "mobile": "Celular: (Próximamente)",
+    "whatsapp": "Chatea por WhatsApp",
+    "location": "Nuestra Ubicación"
+  },
+  "footer": {
+    "copyright": "© 2024 Nombre del Hotel. Todos los derechos reservados.",
+    "address": "Calle Falsa 123, Ciudad, País",
+    "social": "Síguenos"
+  }
+}

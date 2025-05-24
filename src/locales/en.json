@@ -1,0 +1,41 @@
+{
+  "navbar": {
+    "home": "Home",
+    "photos": "Photographs",
+    "rooms": "Rooms",
+    "activities": "Activities",
+    "gastronomy": "Gastronomy",
+    "contact": "Contact",
+    "language": "Language",
+    "theme": "Theme"
+  },
+  "hero": {
+    "title": "Welcome to Our Hotel",
+    "subtitle": "Your perfect getaway awaits."
+  },
+  "cards": {
+    "roomsTitle": "Rooms",
+    "activitiesTitle": "Activities",
+    "gastronomyTitle": "Gastronomy"
+  },
+  "services": {
+    "spa": "Spa",
+    "pool": "Pool",
+    "wifi": "WiFi",
+    "tv": "Television",
+    "ac": "Air Conditioned",
+    "restaurant": "Restaurant"
+  },
+  "contact": {
+    "title": "Write to Us",
+    "phone": "Landline: (Coming Soon)",
+    "mobile": "Mobile: (Coming Soon)",
+    "whatsapp": "Chat on WhatsApp",
+    "location": "Our Location"
+  },
+  "footer": {
+    "copyright": "© 2024 Hotel Name. All rights reserved.",
+    "address": "123 Fake Street, City, Country",
+    "social": "Follow Us"
+  }
+}

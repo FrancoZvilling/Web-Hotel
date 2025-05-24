@@ -1,13 +1,107 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:wght@300;400;500;700&display=swap');
+
+:root {
+  /* Light Theme */
+  --font-primary: 'Montserrat', sans-serif;
+  --font-secondary: 'Lora', serif;
+
+  --color-background: #FDF5E6; /* Old Lace - un beige muy claro y cálido */
+  --color-surface: #FFF8DC; /* Cornsilk - para contenedores como las cards */
+  --color-primary: #8B4513; /* SaddleBrown - un marrón cálido */
+  --color-secondary: #CD853F; /* Peru - un marrón más claro, terracota */
+  --color-accent: #DAA520; /* Goldenrod - dorado */
+  --color-text-primary: #5D4037; /* Marrón oscuro para texto */
+  --color-text-secondary: #795548; /* Marrón medio para texto secundario */
+  --color-border: #D2B48C; /* Tan - para bordes sutiles */
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+[data-theme="dark"] {
+  --color-background: #2C1B13; /* Marrón muy oscuro, casi negro achocolatado */
+  --color-surface: #3E2723; /* Marrón oscuro para superficies */
+  --color-primary: #D2A679; /* Un beige dorado para contraste */
+  --color-secondary: #E6BF8A; /* Un beige más claro */
+  --color-accent: #FFC107; /* Amarillo ámbar brillante */
+  --color-text-primary: #F5E9DD; /* Texto casi blanco, con tinte cálido */
+  --color-text-secondary: #D7CCC8; /* Texto secundario más apagado */
+  --color-border: #5D4037; /* Borde marrón oscuro */
+  --shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
+  --shadow-hover: 0 6px 16px rgba(255, 255, 255, 0.08);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-primary);
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  line-height: 1.6;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-secondary);
+  color: var(--color-primary);
+  margin-bottom: 0.75em;
+}
+
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] h6 {
+  color: var(--color-primary); /* Usamos el primario del tema oscuro */
+}
+
+
+a {
+  color: var(--color-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+  color: var(--color-accent);
+}
+
+button {
+  font-family: var(--font-primary);
+  cursor: pointer;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: var(--color-primary);
+  color: var(--color-background); /* Texto claro sobre fondo oscuro del botón */
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+[data-theme="dark"] button {
+  background-color: var(--color-primary); /* Usar el primario del tema oscuro */
+  color: var(--color-background); /* Texto oscuro sobre fondo claro del botón */
+}
+
+
+button:hover {
+  background-color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+/* Utility class for full-width sections */
+.section-full-width {
+    width: 100%;
+    padding: 40px 0; /* Ajusta el padding vertical según necesites */
 }
